@@ -1,0 +1,102 @@
+stages:
+  - test
+  - sonar
+
+variables:
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
+  SONAR_SCANNER_OPTS: "-Xmx512m"
+
+gradle-test:
+  image: gradle:8.13.0-jdk21
+  stage: test
+  artifacts:
+    when: always
+    paths:
+      - build/reports/problems/
+      - build/classes
+      - build/test-results
+      - build/reports/jacoco
+    expire_in: 1 day
+  script:
+    # プロジェクト名の設定
+    - echo "rootProject.name = '${CI_PROJECT_NAME}'" > settings.gradle
+
+    # build.gradle を動的に生成（src: /src、test: /test のみ）
+    - |
+      cat <<EOF > build.gradle
+      plugins {
+          id 'java'
+          id 'jacoco'
+      }
+
+      repositories {
+          mavenCentral()
+      }
+
+      dependencies {
+          // JUnit 5（Jupiter）の依存
+          testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+      }
+
+      sourceSets {
+          main {
+              java {
+                  srcDirs = ['src']  // ★ 実装コードのパス
+              }
+              resources {
+                  srcDirs = ['src']
+              }
+              output.classesDirs = files('build/classes/java/main')
+          }
+          test {
+              java {
+                  srcDirs = ['test']  // ★ テストコードのパス
+              }
+          }
+      }
+
+      test {
+          useJUnitPlatform()
+          reports {
+              junitXml.required = true
+              html.required = false
+          }
+      }
+
+      jacoco {
+          toolVersion = "0.8.10"
+      }
+
+      jacocoTestReport {
+          dependsOn test
+          reports {
+              xml.required = true
+              html.required = false
+          }
+      }
+      EOF
+
+    # テスト実行（.class も必ず生成されるようにする）
+    - gradle build jacocoTestReport || true
+    # build/classes 以下の確認
+    #- echo "=== Compiled Classes ==="
+    #- ls -R build/classes || echo "No classes found"
+
+sonarqube-analysis:
+  image: sonarsource/sonar-scanner-cli
+  stage: sonar
+  script:
+    - |
+      echo "=== Running sonar-scanner ==="
+      sonar-scanner \
+        -Dsonar.projectKey=$CI_PROJECT_PATH_SLUG \
+        -Dsonar.projectName="$CI_PROJECT_NAME" \
+        -Dsonar.sources=src \
+        -Dsonar.tests=test \
+        -Dsonar.junit.reportPaths=build/test-results/test \
+        -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml \
+        -Dsonar.java.binaries=build/classes/java/main \
+        -Dsonar.host.url=${SONAR_HOST_URL} \
+        -Dsonar.login=${SONAR_TOKEN}
+  dependencies:
+    - gradle-test
