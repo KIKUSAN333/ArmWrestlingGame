@@ -6,7 +6,8 @@ public class Model {
     // Sample instance variables:
     private int time;
     private String typedChar = "";
-    private int mx, my;
+    private int mx;
+    private int my;
     private boolean enableKeyRollover = false;
 
     public Model() {
@@ -14,7 +15,7 @@ public class Model {
         controller = new Controller(this);
     }
 
-    public synchronized void processTimeElapsed(int msec) {
+    public synchronized void processTimeElapsed() {
         time++;
         view.repaint();
     }

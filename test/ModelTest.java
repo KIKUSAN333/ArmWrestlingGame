@@ -13,7 +13,7 @@ public class ModelTest {
         
         // 時間経過イベントが発生すると時刻が１増加
         int time = model.getTime();
-        model.processTimeElapsed(100);
+        model.processTimeElapsed();
         assertEquals(time + 1, model.getTime());
 
         // その他のイベントでは増えない
