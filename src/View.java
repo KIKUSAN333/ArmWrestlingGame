@@ -45,7 +45,19 @@ public class View extends JPanel {
 
         // 画像の表示例
         g.drawImage(image, model.getMX(), model.getMY(), this);
-
+        
+        
+        
+        g.fillRect(200, 320, 230, 100);
+        g.setColor(new Color(230,0,82));
+        g.fillOval(300, 350, 30, 30);
+        
+        g.setColor(new Color(0,82,147));
+        g.fillRect(100, 20, 230, 100);
+        g.setColor(new Color(254,203,0));
+        g.fillRect(150, 20, 15, 100);
+        g.fillRect(100, 65, 230, 15);
+        
         // Linux でアニメーションをスムーズに描画するため（描画結果が勝手に間引かれることを防ぐ）
         getToolkit().sync();
     }
