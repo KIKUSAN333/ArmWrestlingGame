@@ -48,16 +48,6 @@ public class View extends JPanel {
         
         
         
-        g.fillRect(200, 320, 230, 100);
-        g.setColor(new Color(230,0,82));
-        g.fillOval(300, 350, 30, 30);
-        
-        g.setColor(new Color(0,82,147));
-        g.fillRect(100, 20, 230, 100);
-        g.setColor(new Color(254,203,0));
-        g.fillRect(150, 20, 15, 100);
-        g.fillRect(100, 65, 230, 15);
-        
         
         //モデルから状態を取得し,状態に応じて描画
         State state = model.getState();

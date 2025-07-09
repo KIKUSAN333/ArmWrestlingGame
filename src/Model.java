@@ -11,10 +11,17 @@ public class Model {
     private boolean enableKeyRollover = false;
     
     private State state;
+    private Character character1;
+    private Character character2;
 
     public Model() {
         view = new View(this);
         controller = new Controller(this);
+        
+
+        character1 = new Player(this,"test1",0," ");
+        character2 = new Player(this,"test2",0,"a");
+        
         state = new PVEState(this);
     }
 
@@ -75,6 +82,14 @@ public class Model {
     
     public State getState() {
     	return state;
+    }
+    
+    public Character getCharacter1() {
+    	return character1;
+    }
+    
+    public Character getCharacter2() {
+    	return character2;
     }
     
     
