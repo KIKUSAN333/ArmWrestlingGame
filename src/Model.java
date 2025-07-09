@@ -9,10 +9,13 @@ public class Model {
     private int mx;
     private int my;
     private boolean enableKeyRollover = false;
+    
+    private State state;
 
     public Model() {
         view = new View(this);
         controller = new Controller(this);
+        state = new PVEState(this);
     }
 
     public synchronized void processTimeElapsed() {
@@ -26,6 +29,8 @@ public class Model {
             enableKeyRollover = !enableKeyRollover; // 同時押し許可モード反転
             controller.setKeyRollover(enableKeyRollover);
         }
+        
+        state = state.processKeyTyped(typed);
         view.repaint();        
     }
 
@@ -67,5 +72,11 @@ public class Model {
     public boolean getEnableKeyRollover() { 
         return enableKeyRollover;
     }
+    
+    public State getState() {
+    	return state;
+    }
+    
+    
 
 }

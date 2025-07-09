@@ -58,6 +58,11 @@ public class View extends JPanel {
         g.fillRect(150, 20, 15, 100);
         g.fillRect(100, 65, 230, 15);
         
+        
+        //モデルから状態を取得し,状態に応じて描画
+        State state = model.getState();
+        state.paintComponent(g);
+        
         // Linux でアニメーションをスムーズに描画するため（描画結果が勝手に間引かれることを防ぐ）
         getToolkit().sync();
     }
