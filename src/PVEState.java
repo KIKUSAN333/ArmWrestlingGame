@@ -38,8 +38,6 @@ public class PVEState implements State{
 
 	@Override
 	public State processKeyTyped(String typed) {
-		// TODO 自動生成されたメソッド・スタブ
-		
 
 		//入力したキーが対応するキーであった場合
 		if(typed.equals(player.getKey())) {

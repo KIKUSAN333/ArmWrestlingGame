@@ -7,6 +7,9 @@ public class PowerBar {
     final int BAR_X = 100;
     final int BAR_Y = 350;
     final int BAR_WIDTH = 30;
+    
+    //パワー差がつくと、バーが完全に片方に寄るという基準値
+    final int POWER_ADVANTAGE_TO_WIN = 20; 
 	
 	private double currentBarPercent;
 	private Model model;
@@ -34,7 +37,25 @@ public class PowerBar {
 	}
 
 	public void updateBar(int power1,int power2) {
-		
-		currentBarPercent = (double) power1/ (power1 + power2) ;
+
+
+	    //２人のパワーの差を計算
+	    int difference = power1 - power2;
+
+	    //差を基準値で割り、割合を計算（-1.0 ～ 1.0 の範囲になる）
+	    //基準値で割ることで、絶対値に関係なく差の大きさだけが問題になる
+	    double differenceRatio = (double) difference / POWER_ADVANTAGE_TO_WIN;
+
+	    //割合をバーのパーセンテージ（0.0 ～ 1.0）に変換
+	    //中心を0.5として、そこから差の分だけずらす
+	    currentBarPercent = 0.5 + (differenceRatio / 2.0);
+
+	    //計算結果が 0.0 ～ 1.0 の範囲に収まるように調整
+	    //パワー差が基準値を超えた場合への対処
+	    if (currentBarPercent > 1.0) {
+	        currentBarPercent = 1.0;
+	    } else if (currentBarPercent < 0.0) {
+	        currentBarPercent = 0.0;
+	    }
 	}
 }
