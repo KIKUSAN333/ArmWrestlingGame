@@ -35,7 +35,7 @@ public class Controller implements ActionListener, KeyListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        model.processTimeElapsed();
+        model.processTimeElapsed(DELAY);
     }
 
     private String getKeyName(KeyEvent e) {

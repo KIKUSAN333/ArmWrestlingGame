@@ -23,8 +23,10 @@ public class Model {
         state = new PVEState(this);
     }
 
-    public synchronized void processTimeElapsed() {
+    public synchronized void processTimeElapsed(int msec) {
         time++;
+        
+        state = state.processTimeElapsed(msec);
         view.repaint();
     }
 
