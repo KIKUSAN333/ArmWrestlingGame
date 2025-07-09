@@ -5,13 +5,15 @@ public class PVEState implements State{
 	private Model model;
 	private Player player;
 	private Enemy enemy;
+	private PowerBar powerBar;
 	
 	private int elapsedCount;
 	
 	public PVEState(Model m) {
 		model = m;
-		player = new Player(m,"test",0,"ENTER");
-		enemy = new Enemy(m,"test",0,1);
+		player = new Player(m,"test",1,"ENTER");
+		enemy = new Enemy(m,"test",1,1);
+		powerBar = new PowerBar(m);
 		
 		elapsedCount = 0;
 	}
@@ -29,7 +31,7 @@ public class PVEState implements State{
 			elapsedCount = 0;
 		}
 		
-		
+		powerBar.updateBar(player.getPower(), enemy.getPower());
 		
 		return this;
 	}
@@ -44,6 +46,7 @@ public class PVEState implements State{
 			player.doAction();
 		}
 		
+		powerBar.updateBar(player.getPower(), enemy.getPower());
 		
 		return this;
 	}
@@ -55,6 +58,8 @@ public class PVEState implements State{
 		g.setColor(Color.WHITE);
 		g.drawString("Player :" + player.getPower(),0,100);
 		g.drawString("Enemy  :" + enemy.getPower(),200,100);
+		
+		powerBar.showBar(g);
 	}
 
 }
