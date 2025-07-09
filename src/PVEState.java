@@ -3,17 +3,14 @@ import java.awt.Color;
 
 public class PVEState implements State{
 	private Model model;
-	private Player player1;
-	private Character player2;
+	private Player player;
+	private Enemy enemy;
 	
 	public PVEState(Model m) {
 		model = m;
-		//Player型にキャストする
-		Character character1 = model.getCharacter1();
-		player1 = (Player) character1;
-		
-		
-		player2 = model.getCharacter2();
+		player = new Player(m,"test",0,"ENTER");
+		enemy = new Enemy(m,"test",0,1);
+
 	}
 
 	@Override
@@ -28,8 +25,8 @@ public class PVEState implements State{
 		
 
 		//入力したキーが対応するキーであった場合
-		if(typed.equals(player1.getKey())) {
-			player1.doAction();
+		if(typed.equals(player.getKey())) {
+			player.doAction();
 		}
 		
 		
@@ -41,8 +38,8 @@ public class PVEState implements State{
 		// TODO 自動生成されたメソッド・スタブ
 		
 		g.setColor(Color.WHITE);
-		if(player1 != null)
-			g.drawString("PlayerPower :" + player1.getPower(),100,400);
+		g.drawString("PlayerPower :" + player.getPower(),100,400);
+		g.drawString("EnemyPower  :" + enemy.getPower(),100,500);
 	}
 
 }
