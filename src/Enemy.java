@@ -2,17 +2,40 @@
 public class Enemy extends Character{
 
 	private int level;
+	private int doNextActionFrame;
 	
 	public Enemy(Model model,String name, int power, int level) {
 		super(model,name, power);
 		this.level = level;
-		// TODO 自動生成されたコンストラクター・スタブ
+		
+		decideNextActionFrame();
+		
 	}
 
 	@Override
 	public void doAction() {
-		// TODO 自動生成されたメソッド・スタブ
+		
 		super.doAction();
+
+	}
+	
+	private void decideNextActionFrame() {
+		if(level == 1) {
+			doNextActionFrame = 5;
+		}
+		else if(level == 2) {
+			doNextActionFrame = 3;
+		}
+		else if(level == 3) {
+			doNextActionFrame = 1;
+		}
+		else {
+			doNextActionFrame = 10;
+		}
+	}
+	
+	public int getDoNextActionFrame() {
+		return doNextActionFrame;
 	}
 
 

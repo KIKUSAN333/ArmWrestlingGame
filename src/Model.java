@@ -17,9 +17,6 @@ public class Model {
         view = new View(this);
         controller = new Controller(this);
         
-
-
-        
         state = new PVEState(this);
     }
 

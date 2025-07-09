@@ -24,7 +24,7 @@ public class PVEState implements State{
 		elapsedCount++;
 		
 		//タイマーが呼ばれた回数が一定以上だと
-		if(elapsedCount >= 5) {
+		if(elapsedCount >= enemy.getDoNextActionFrame()) {
 			enemy.doAction();
 			
 			//カウントをリセット

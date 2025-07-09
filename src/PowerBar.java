@@ -37,8 +37,6 @@ public class PowerBar {
 	}
 
 	public void updateBar(int power1,int power2) {
-
-
 	    //２人のパワーの差を計算
 	    int difference = power1 - power2;
 

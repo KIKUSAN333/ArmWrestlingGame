@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 public class Controller implements ActionListener, KeyListener, MouseListener {
 
-    private static final int DELAY = 100; // msec
+    private static final int DELAY = 50; // msec
     private Model model;
     private Timer timer;
     private List<String> pressedKeys = new ArrayList<>();
