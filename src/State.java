@@ -6,5 +6,5 @@ public interface State {
 	// 状態に応じてキータイプイベントを処理するメソッド
 	public State processKeyTyped(String typed);
 	// 状態に応じて画面を描画するメソッド
-	public void paintComponent(Graphics g);
+	public void paintComponent(Graphics g,View view);
 }
