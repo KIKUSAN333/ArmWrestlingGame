@@ -28,8 +28,7 @@ public class PowerBar {
 
 		currentBarPercent = 0;
 		hideCount = 0;
-		
-
+	
 		decideHideParameters();
 	}
 	
@@ -89,5 +88,9 @@ public class PowerBar {
 	            isHidingBar = true;
 	        }
 	    }
+	}
+	
+	public double getCurrentBarPercent(){
+		return currentBarPercent;
 	}
 }

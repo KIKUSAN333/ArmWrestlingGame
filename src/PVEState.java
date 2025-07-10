@@ -43,8 +43,13 @@ public class PVEState implements State{
 		}
 		
 		enemy.doAction();
-		
 		powerBar.updateBar(player.getPower(), enemy.getPower());
+		
+		if(powerBar.getCurrentBarPercent() >= 0.7 && !enemy.getIsPowerUp()) {
+			enemy.basePowerUp();
+		}
+		
+		
 		
 		return this;
 	}
