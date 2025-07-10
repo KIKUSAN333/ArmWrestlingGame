@@ -12,14 +12,18 @@ public class PVEState implements State{
 	private PowerBar powerBar;
 	private Time time;
 	private Image image;
+	
+	private int elapsedCount;
 
 	
 	public PVEState(Model m) {
 		model = m;
 		player = new Player(m,"test",1,"ENTER");
-		enemy = new Enemy(m,"test",1,1);
+		enemy = new Enemy(m,"test",1,3);
 		powerBar = new PowerBar(m);
 		time = new Time();
+		
+		elapsedCount = 0;
 		
         // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
         image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
@@ -28,7 +32,16 @@ public class PVEState implements State{
 
 	@Override
 	public State processTimeElapsed(int msec) {
-
+		elapsedCount++;
+		
+		//1秒経過の場合
+		if(elapsedCount >= 100) {
+			time.updateTime();
+			
+			//リセット
+			elapsedCount = 0;
+		}
+		
 		enemy.doAction();
 		
 		powerBar.updateBar(player.getPower(), enemy.getPower());

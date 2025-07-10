@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Enemy extends Character{
 
@@ -25,19 +26,22 @@ public class Enemy extends Character{
 			
 			//リセットする
 			doActionPoint = 0;
+			decideNextActionFrame();
 		}
 
 	}
 	
 	private void decideNextActionFrame() {
+		Random random = new Random();
+		
 		if(level == 1) {
-			baseActionPoint = 5;
+			baseActionPoint = random.nextInt(20,40);
 		}
 		else if(level == 2) {
-			baseActionPoint = 3;
+			baseActionPoint = random.nextInt(10,20);
 		}
 		else if(level == 3) {
-			baseActionPoint = 1;
+			baseActionPoint = random.nextInt(5,15);
 		}
 		else {
 			baseActionPoint = 10;
