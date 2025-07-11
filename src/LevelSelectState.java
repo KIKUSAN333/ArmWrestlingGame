@@ -40,13 +40,13 @@ public class LevelSelectState implements State{
 	private State updateState() {
 		
 		if(selectID == 0) {
-			return new ReadyState(1);
+			return new ReadyState(1,"","");
 		}
 		else if(selectID == 1) {
-			return new ReadyState(2);
+			return new ReadyState(2,"","");
 		}
 		else if(selectID == 2) {
-			return new ReadyState(3);
+			return new ReadyState(3,"","");
 		}
 		
 		return this;

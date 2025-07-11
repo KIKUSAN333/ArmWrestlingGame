@@ -15,9 +15,9 @@ public class PVPState implements State{
 	private int elapsedCount;
 
 	
-	public PVPState() {
-		player1 = new Player("player1",1,"ENTER");
-		player2 = new Player("player2",1," ");
+	public PVPState(String player1Name,String player2Name) {
+		player1 = new Player(player1Name,1,"ENTER");
+		player2 = new Player(player2Name,1," ");
 		powerBar = new PowerBar();
 		time = new Time();
 		
@@ -120,8 +120,8 @@ public class PVPState implements State{
 		
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Player1 :" + player1.getPower(),0,100);
-		g.drawString("Player2  :" + player2.getPower(),200,100);
+		g.drawString(player1.getName() + " : " + player1.getPower(),0,100);
+		g.drawString(player2.getName() + " : " + player2.getPower(),200,100);
 		
 	    view.drawScaledImage(g,image,100,150,0.5);
 

@@ -43,7 +43,7 @@ public class TitleState implements State{
 			return new LevelSelectState();
 		}
 		else if(selectID == 1) {
-			return new ReadyState(0);
+			return new EnterNameState();
 		}
 		else if(selectID == 2) {
 			

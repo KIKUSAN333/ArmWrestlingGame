@@ -12,14 +12,20 @@ public class ReadyState implements State{
 	private Image image;
 	private Image backgroundImage;
 	
+	private String player1Name;
+	private String player2Name;
+	
 	private int enemyLevel;
 
-	public ReadyState(int level) {
+	public ReadyState(int level,String player1Name,String player2Name) {
 
 		enemyLevel = level;
 		
 		startCount = 5;
 		elapsedCount = 0;
+		
+		this.player1Name = player1Name;
+		this.player2Name = player2Name;
 		
         // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
        image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
@@ -44,7 +50,7 @@ public class ReadyState implements State{
 
 	private State updateState() {
 		if(enemyLevel == 0) {
-			return new PVPState();
+			return new PVPState(player1Name,player2Name);
 		}
 		return new PVEState(enemyLevel);
 	}
