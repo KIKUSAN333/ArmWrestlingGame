@@ -1,5 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class ReadyState implements State{
 	
@@ -7,12 +10,18 @@ public class ReadyState implements State{
 	
 	private int startCount;
 	private int elapsedCount;
+	private Image image;
+	private Image backgroundImage;
 
 	public ReadyState(Model m) {
 		model = m;
 
-		startCount = 3;
+		startCount = 5;
 		elapsedCount = 0;
+		
+        // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
+       image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
+       backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("pxfuel.jpg"));
 	}
 
 	@Override
@@ -39,9 +48,13 @@ public class ReadyState implements State{
 
 	@Override
 	public void paintComponent(Graphics g, View view) {
-		
+		view.drawScaledImage(g,backgroundImage,-150,0,0.35);
+		view.drawScaledImage(g,image,100,150,0.5);
 		g.setColor(Color.WHITE);
-		g.drawString("" + startCount, 250, 400);
+		
+		Font font = new Font("Arial", Font.BOLD, 100);
+		g.setFont(font);
+		g.drawString("" + startCount, 270, 100);
 		
 		
 	}

@@ -3,7 +3,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
+import java.awt.image.ImageObserver;
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 
 public class PVEState implements State{
 	private Model model;
@@ -27,8 +30,8 @@ public class PVEState implements State{
 		elapsedCount = 0;
 		
         // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
-        image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
-        backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("pxfuel.jpg"));
+       image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
+       backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("pxfuel.jpg"));
 		
 	}
 	
@@ -89,6 +92,10 @@ public class PVEState implements State{
 		if(powerBar.getCurrentBarPercent() >= 0.7 && !enemy.getIsPowerUp()) {
 			enemy.basePowerUp();
 		}
+		//プレイヤーがピンチになったら
+		if(powerBar.getCurrentBarPercent() <= 0.3 && !player.getIsPowerUp()) {
+			player.basePowerUp();
+		}
 		
 		return updateState("");
 	}
@@ -110,50 +117,20 @@ public class PVEState implements State{
 	@Override
 	public void paintComponent(Graphics g,View view) {
 		// TODO 自動生成されたメソッド・スタブ
-		g.drawImage(backgroundImage,1,1,view);
+		view.drawScaledImage(g,backgroundImage,-150,0,0.35);
 		
 		
 		g.setColor(Color.WHITE);
 		g.drawString("Player :" + player.getPower(),0,100);
 		g.drawString("Enemy  :" + enemy.getPower(),200,100);
 		
-	    // ======== 画像の3D的X軸回転処理 ========
-	    Graphics2D g2d = (Graphics2D) g;
-
-	    if (image != null && image.getWidth(view) > 0) {
-	        // -- 設定値 --
-	        double angleDegrees = 0.0; //
-	        double finalScale = 0.5;
-	        int imageX = 130;
-	        int imageY = 150;
-	        double perspectiveFactor = image.getHeight(view) * finalScale * 0.5;
-
-	        // 1. 変換の準備
-	        double angleRadians = Math.toRadians(angleDegrees);
-	        // ★★★常に正の値になるよう Math.abs() を使う★★★
-	        double rotationEffectScaleY = Math.abs(Math.cos(angleRadians));
-	        double yShift = Math.sin(angleRadians) * perspectiveFactor;
-
-	        // 2. AffineTransformで変換を設定
-	        AffineTransform tx = new AffineTransform();
-	        
-	        double anchorX = image.getWidth(view) / 2.0;
-	        double anchorY = image.getHeight(view); 
-
-	        // 3. 変換を正しい順序で適用
-	        tx.translate(imageX, imageY + yShift);
-	        tx.scale(finalScale, finalScale);
-	        tx.translate(anchorX, anchorY);
-	        tx.scale(1.0, rotationEffectScaleY);
-	        tx.translate(-anchorX, -anchorY);
-
-	        // 4. 作成した変換を適用して画像を描画
-	        g2d.drawImage(image, tx, view);
-	    }
+	    view.drawScaledImage(g,image,100,150,0.5);
 
 	    
 		powerBar.showBar(g);
 		time.showTime(g);
 	}
+	
+
 
 }

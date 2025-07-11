@@ -70,4 +70,19 @@ public class View extends JPanel {
     public void playBombSound() {
         sound.play();
     }
+    
+	public void drawScaledImage(Graphics g, Image img, int x, int y, double scale) {
+	    if (img == null) return;
+	    
+	    // 元の画像のサイズを取得
+	    int originalWidth = img.getWidth(this);
+	    int originalHeight = img.getHeight(this);
+	    
+	    // 縮小後のサイズを計算
+	    int scaledWidth = (int)(originalWidth * scale);
+	    int scaledHeight = (int)(originalHeight * scale);
+	    
+	    // 縮小して描画
+	    g.drawImage(img, x, y, scaledWidth, scaledHeight, this);
+	}
 }

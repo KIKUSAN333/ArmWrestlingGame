@@ -9,6 +9,9 @@ public class PowerBar {
     final int BAR_Y = 50;
     final int BAR_WIDTH = 30;
     
+    final int BARFRAME_LENGTH = 5;
+    final int BARFRAME_WIDTH = 3;
+    
     //パワー差がつくと、バーが完全に片方に寄るという基準値
     final int POWER_ADVANTAGE_TO_WIN = 20; 
     
@@ -44,6 +47,8 @@ public class PowerBar {
 	// 毎フレーム呼ばれる描画関数
 	public void showBar(Graphics g) {
 	    updateBarVisibility();  // 状態だけ更新
+	    g.setColor(Color.WHITE);
+	    g.fillRect(BAR_X - BARFRAME_LENGTH, BAR_Y - BARFRAME_WIDTH, MAX_BAR_LENGTH + BARFRAME_LENGTH * 2, BAR_WIDTH + BARFRAME_WIDTH * 2);
 
 	    if (isHidingBar) {
 	        // 隠すときはグレー
