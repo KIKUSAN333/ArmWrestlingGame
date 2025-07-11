@@ -20,18 +20,20 @@ public class LevelSelectState implements State{
 
 	@Override
 	public State processKeyTyped(String typed) {
-	       if(typed.equals("UP")) {
-	            selectID = (selectID - 1 + MAX_OPTIONS) % MAX_OPTIONS;
-	        }
+       if(typed.equals("UP")) {
+            selectID = (selectID - 1 + MAX_OPTIONS) % MAX_OPTIONS;
+        }
 
-	        if(typed.equals("DOWN")) {
-	            selectID = (selectID + 1) % MAX_OPTIONS;
-	        }
-		
+        if(typed.equals("DOWN")) {
+            selectID = (selectID + 1) % MAX_OPTIONS;
+        }
+        
+       if(typed.equals("BS")) {
+        	return new TitleState();
+        }
+	
 		if(typed.equals("ENTER")) {
-			
 			return updateState();
-			
 		}
 		
 		return this;
