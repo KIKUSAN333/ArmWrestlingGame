@@ -5,8 +5,8 @@ import java.awt.Graphics;
 public class TitleState implements State{
 	
 	private int selectID;
-	private final int MAX_OPTIONS = 3; // 選択肢の数
-	private String[] menuOptions = {"PVE", "PVP", "RANKING"}; // 選択肢のテキスト
+	private final int MAX_OPTIONS = 4; // 選択肢の数
+	private String[] menuOptions = {"PVE", "PVP", "RANKING" , "HOW TO PLAY"}; // 選択肢のテキスト
 
 	public TitleState() {
 		selectID = 0;
@@ -47,6 +47,9 @@ public class TitleState implements State{
 		}
 		else if(selectID == 2) {
 			
+		}
+		else if(selectID == 3) {
+			return new HowToPlayState();
 		}
 		
 		return this;
