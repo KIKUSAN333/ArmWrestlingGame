@@ -11,9 +11,13 @@ public class ReadyState implements State{
 	private int elapsedCount;
 	private Image image;
 	private Image backgroundImage;
+	
+	private int enemyLevel;
 
-	public ReadyState() {
+	public ReadyState(int level) {
 
+		enemyLevel = level;
+		
 		startCount = 5;
 		elapsedCount = 0;
 		
@@ -32,7 +36,7 @@ public class ReadyState implements State{
 		}
 		
 		if(startCount <= 0) {
-			return new PVEState();
+			return new PVEState(enemyLevel);
 		}
 		
 		return this;

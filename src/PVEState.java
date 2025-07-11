@@ -19,9 +19,9 @@ public class PVEState implements State{
 	private int elapsedCount;
 
 	
-	public PVEState() {
+	public PVEState(int level) {
 		player = new Player("test",1,"ENTER");
-		enemy = new Enemy("enemy",1,3);
+		enemy = new Enemy("enemy",1,level);
 		powerBar = new PowerBar();
 		time = new Time();
 		
@@ -90,10 +90,12 @@ public class PVEState implements State{
 		if(powerBar.getCurrentBarPercent() >= 0.7 && !enemy.getIsPowerUp()) {
 			enemy.basePowerUp();
 		}
+		
 		//プレイヤーがピンチになったら
 		if(powerBar.getCurrentBarPercent() <= 0.3 && !player.getIsPowerUp()) {
 			player.basePowerUp();
 		}
+		
 		
 		return updateState("");
 	}
