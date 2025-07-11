@@ -5,7 +5,7 @@ abstract class Character {
 	private int basePower;
 	private boolean isPowerUp;
 	
-	public Character(String name, int power) {
+	protected Character(String name, int power) {
 		super();
 		this.name = name;
 		this.power = power;
