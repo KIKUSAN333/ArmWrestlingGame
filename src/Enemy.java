@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class Enemy extends Character{
 
@@ -6,14 +6,14 @@ public class Enemy extends Character{
 	private int baseActionPoint;
 	private int doActionPoint;
 	
-	private Random random;
+	private SecureRandom random;
 	
 	public Enemy(String name, int power, int level) {
 		super(name, power);
 		this.level = level;
 		
 		doActionPoint = 0;
-		random = new Random();
+		random = new SecureRandom();
 		
 		decideNextActionFrame();
 		

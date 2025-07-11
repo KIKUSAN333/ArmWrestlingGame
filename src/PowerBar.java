@@ -1,6 +1,7 @@
 import java.awt.Color;
-import java.util.Random;
+import java.security.SecureRandom;
 import java.awt.Graphics;
+
 
 public class PowerBar {
     // バーの最大幅を定義
@@ -24,7 +25,7 @@ public class PowerBar {
 	private int maxHideCount = 400;
 	private int hideDuration = 200;
 	
-	private Random random;
+	private SecureRandom random;
 	
 	public PowerBar() {
 		super();
@@ -32,7 +33,7 @@ public class PowerBar {
 		currentBarPercent = 0;
 		hideCount = 0;
 		
-		random = new Random();
+		random = new SecureRandom();
 	
 		decideHideParameters();
 	}
