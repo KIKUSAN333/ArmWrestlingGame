@@ -105,8 +105,8 @@ public class PVEState implements State{
 		
 		powerBar.updateBar(player.getPower(), enemy.getPower());
 		
-		State currentState = updateState(typed);
-		return currentState;
+		
+		return updateState(typed);
 	}
 
 	@Override

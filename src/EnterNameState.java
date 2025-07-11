@@ -7,7 +7,7 @@ public class EnterNameState implements State{
     private String player1Name;
     private String player2Name;
     private int currentPlayer; // 0: player1, 1: player2
-    private final int MAX_NAME_LENGTH = 10; // 名前の最大長
+    private static final int MAX_NAME_LENGTH = 10; // 名前の最大長
 
     public EnterNameState() {
         player1Name = "";
@@ -17,7 +17,6 @@ public class EnterNameState implements State{
 
     @Override
     public State processTimeElapsed(int msec) {
-        // TODO 自動生成されたメソッド・スタブ
         return this;
     }
 

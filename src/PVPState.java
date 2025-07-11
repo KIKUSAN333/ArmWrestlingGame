@@ -109,8 +109,8 @@ public class PVPState implements State{
 		
 		powerBar.updateBar(player1.getPower(), player2.getPower());
 		
-		State currentState = updateState(typed);
-		return currentState;
+		
+		return updateState(typed);
 	}
 
 	@Override
