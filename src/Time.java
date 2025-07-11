@@ -18,7 +18,7 @@ public class Time {
 	
 	public void showTime(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.drawString("" + time, 200, 350);
+		g.drawString("" + time, 275, 40);
 	}
 
 }

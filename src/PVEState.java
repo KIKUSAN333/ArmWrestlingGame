@@ -12,6 +12,7 @@ public class PVEState implements State{
 	private PowerBar powerBar;
 	private Time time;
 	private Image image;
+	private Image backgroundImage;
 	
 	private int elapsedCount;
 
@@ -19,7 +20,7 @@ public class PVEState implements State{
 	public PVEState(Model m) {
 		model = m;
 		player = new Player(m,"test",1,"ENTER");
-		enemy = new Enemy(m,"test",1,1);
+		enemy = new Enemy(m,"enemy",1,3);
 		powerBar = new PowerBar(m);
 		time = new Time();
 		
@@ -27,6 +28,7 @@ public class PVEState implements State{
 		
         // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
         image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
+        backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("pxfuel.jpg"));
 		
 	}
 	
@@ -108,6 +110,8 @@ public class PVEState implements State{
 	@Override
 	public void paintComponent(Graphics g,View view) {
 		// TODO 自動生成されたメソッド・スタブ
+		g.drawImage(backgroundImage,1,1,view);
+		
 		
 		g.setColor(Color.WHITE);
 		g.drawString("Player :" + player.getPower(),0,100);
@@ -118,8 +122,8 @@ public class PVEState implements State{
 
 	    if (image != null && image.getWidth(view) > 0) {
 	        // -- 設定値 --
-	        double angleDegrees = 60.0; //
-	        double finalScale = 0.3;
+	        double angleDegrees = 0.0; //
+	        double finalScale = 0.5;
 	        int imageX = 130;
 	        int imageY = 150;
 	        double perspectiveFactor = image.getHeight(view) * finalScale * 0.5;
