@@ -6,12 +6,10 @@ public class Player extends Character{
 	public Player(String name, int power,String kkey) {
 		super(name, power);
 		key = kkey;
-		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	@Override
 	public void doAction() {
-		// TODO 自動生成されたメソッド・スタブ
 		super.doAction();
 	}
 	

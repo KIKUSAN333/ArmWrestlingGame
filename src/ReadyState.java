@@ -57,7 +57,6 @@ public class ReadyState implements State{
 	
 	@Override
 	public State processKeyTyped(String typed) {
-		// TODO 自動生成されたメソッド・スタブ
 		return this;
 	}
 
