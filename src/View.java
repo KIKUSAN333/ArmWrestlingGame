@@ -48,6 +48,7 @@ public class View extends JPanel {
         g.drawString("KeyRollover: " + model.getEnableKeyRollover(), 100, 250);
         g.drawString("Mouse Pressed: " + model.getMX() + "," + model.getMY(), 100, 300);
 		*/
+        
         // 画像の表示例
         g.drawImage(image, model.getMX(), model.getMY(), this);
         

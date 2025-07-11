@@ -2,23 +2,23 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Time {
-	private int time;
+	private int remainingTime;
 	
 	public Time() {
-		time = 30;
+		remainingTime = 30;
 	}
 	
 	public void updateTime() {
-		time--;
+		remainingTime--;
 	}
 	
 	public int getTime() {
-		return time;
+		return remainingTime;
 	}
 	
 	public void showTime(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.drawString("" + time, 275, 40);
+		g.drawString("" + remainingTime, 275, 40);
 	}
 
 }
