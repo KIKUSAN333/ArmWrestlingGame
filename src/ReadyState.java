@@ -36,12 +36,19 @@ public class ReadyState implements State{
 		}
 		
 		if(startCount <= 0) {
-			return new PVEState(enemyLevel);
+			return updateState();
 		}
 		
 		return this;
 	}
 
+	private State updateState() {
+		if(enemyLevel == 0) {
+			return new PVPState();
+		}
+		return new PVEState(enemyLevel);
+	}
+	
 	@Override
 	public State processKeyTyped(String typed) {
 		// TODO 自動生成されたメソッド・スタブ
