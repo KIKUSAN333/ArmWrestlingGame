@@ -3,8 +3,8 @@ public class Player extends Character{
 
 	String key;
 	
-	public Player(Model model,String name, int power,String kkey) {
-		super(model,name, power);
+	public Player(String name, int power,String kkey) {
+		super(name, power);
 		key = kkey;
 		// TODO 自動生成されたコンストラクター・スタブ
 	}

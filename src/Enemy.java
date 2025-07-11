@@ -8,8 +8,8 @@ public class Enemy extends Character{
 	
 	private Random random;
 	
-	public Enemy(Model model,String name, int power, int level) {
-		super(model,name, power);
+	public Enemy(String name, int power, int level) {
+		super(name, power);
 		this.level = level;
 		
 		doActionPoint = 0;

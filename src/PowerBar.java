@@ -17,7 +17,6 @@ public class PowerBar {
     
 	
 	private double currentBarPercent;
-	private Model model;
 	
 	private int hideCount;
 	private boolean isHidingBar;
@@ -27,9 +26,8 @@ public class PowerBar {
 	
 	private Random random;
 	
-	public PowerBar(Model m) {
+	public PowerBar() {
 		super();
-		this.model = m;
 
 		currentBarPercent = 0;
 		hideCount = 0;

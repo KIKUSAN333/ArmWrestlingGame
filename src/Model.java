@@ -17,7 +17,7 @@ public class Model {
         view = new View(this);
         controller = new Controller(this);
         
-        state = new ReadyState(this);
+        state = new TitleState();
     }
 
     public synchronized void processTimeElapsed(int msec) {

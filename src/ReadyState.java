@@ -6,15 +6,13 @@ import java.awt.Toolkit;
 
 public class ReadyState implements State{
 	
-	private Model model; 
 	
 	private int startCount;
 	private int elapsedCount;
 	private Image image;
 	private Image backgroundImage;
 
-	public ReadyState(Model m) {
-		model = m;
+	public ReadyState() {
 
 		startCount = 5;
 		elapsedCount = 0;
@@ -34,7 +32,7 @@ public class ReadyState implements State{
 		}
 		
 		if(startCount <= 0) {
-			return new PVEState(model);
+			return new PVEState();
 		}
 		
 		return this;

@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Composite;
 
 public class PVEState implements State{
-	private Model model;
 	private Player player;
 	private Enemy enemy;
 	private PowerBar powerBar;
@@ -20,11 +19,10 @@ public class PVEState implements State{
 	private int elapsedCount;
 
 	
-	public PVEState(Model m) {
-		model = m;
-		player = new Player(m,"test",1,"ENTER");
-		enemy = new Enemy(m,"enemy",1,3);
-		powerBar = new PowerBar(m);
+	public PVEState() {
+		player = new Player("test",1,"ENTER");
+		enemy = new Enemy("enemy",1,3);
+		powerBar = new PowerBar();
 		time = new Time();
 		
 		elapsedCount = 0;
@@ -43,7 +41,7 @@ public class PVEState implements State{
 	    String winner = getWinner();
 	    
 	    if (winner != null) {
-	        return new ResultState(winner);
+	        return new ResultState(winner,powerBar);
 	    }
 	    
 	    // ボス戦への移行

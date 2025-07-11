@@ -33,8 +33,13 @@ public class View extends JPanel {
     public void paintComponent(Graphics g) {
         // 画面をいったんクリア
         clear(g);
-
+        
+        //フォントを基準に設定
+        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
+        g.setColor(Color.WHITE);
+        
         // 描画する
+        /*
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
         g.setColor(Color.WHITE);
 
@@ -42,7 +47,7 @@ public class View extends JPanel {
         g.drawString("Key Typed: " + model.getTypedChar(), 100, 200);
         g.drawString("KeyRollover: " + model.getEnableKeyRollover(), 100, 250);
         g.drawString("Mouse Pressed: " + model.getMX() + "," + model.getMY(), 100, 300);
-
+		*/
         // 画像の表示例
         g.drawImage(image, model.getMX(), model.getMY(), this);
         
