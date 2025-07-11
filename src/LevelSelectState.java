@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class LevelSelectState implements State{
 
 	private int selectID;
-	private final int MAX_OPTIONS = 3; // 選択肢の数
+	private static final int MAX_OPTIONS = 3; // 選択肢の数
 	private String[] menuOptions = {"Level 1", "Level 2", "Level 3"}; // 選択肢のテキスト
 	
 	public LevelSelectState() {
@@ -14,7 +14,6 @@ public class LevelSelectState implements State{
 
 	@Override
 	public State processTimeElapsed(int msec) {
-		// TODO 自動生成されたメソッド・スタブ
 		return this;
 	}
 

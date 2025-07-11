@@ -32,17 +32,13 @@ public class ResultState implements State{
 		if(elapsedCount >= 100) {
 			isEnd = true;
 		}
-		
-		// TODO 自動生成されたメソッド・スタブ
+
 		return this;
 	}
 
 	@Override
 	public State processKeyTyped(String typed) {
 		
-
-		
-		// TODO 自動生成されたメソッド・スタブ
 		if(isEnd && typed.equals("ENTER")) {
 			return new TitleState();
 		}

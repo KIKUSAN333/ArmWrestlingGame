@@ -3,7 +3,6 @@ public class Model {
     private View view;
     private Controller controller;
 
-    // Sample instance variables:
     private int time;
     private String typedChar = "";
     private int mx;

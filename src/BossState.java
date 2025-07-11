@@ -10,7 +10,6 @@ public class BossState implements State{
 
 	@Override
 	public State processTimeElapsed(int msec) {
-		// TODO 自動生成されたメソッド・スタブ
 		return this;
 	}
 

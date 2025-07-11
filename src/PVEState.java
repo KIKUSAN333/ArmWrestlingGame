@@ -111,7 +111,6 @@ public class PVEState implements State{
 
 	@Override
 	public void paintComponent(Graphics g,View view) {
-		// TODO 自動生成されたメソッド・スタブ
 		view.drawScaledImage(g,backgroundImage,-150,0,0.35);
 		
 		

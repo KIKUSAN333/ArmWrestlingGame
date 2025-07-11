@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class TitleState implements State{
 	
 	private int selectID;
-	private final int MAX_OPTIONS = 4; // 選択肢の数
+	private static final int MAX_OPTIONS = 4; // 選択肢の数
 	private String[] menuOptions = {"PVE", "PVP", "RANKING" , "HOW TO PLAY"}; // 選択肢のテキスト
 
 	public TitleState() {
@@ -14,7 +14,6 @@ public class TitleState implements State{
 
 	@Override
 	public State processTimeElapsed(int msec) {
-		// TODO 自動生成されたメソッド・スタブ
 		return this;
 	}
 

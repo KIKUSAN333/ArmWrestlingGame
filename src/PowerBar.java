@@ -5,16 +5,16 @@ import java.awt.Graphics;
 
 public class PowerBar {
     // バーの最大幅を定義
-    final int MAX_BAR_LENGTH = 250;
-    final int BAR_X = 175;
-    final int BAR_Y = 50;
-    final int BAR_WIDTH = 30;
+    private final static int MAX_BAR_LENGTH = 250;
+    private final static int BAR_X = 175;
+    private final static int BAR_Y = 50;
+    private final static int BAR_WIDTH = 30;
     
-    final int BARFRAME_LENGTH = 5;
-    final int BARFRAME_WIDTH = 3;
+    private final static int BARFRAME_LENGTH = 5;
+    private final static int BARFRAME_WIDTH = 3;
     
     //パワー差がつくと、バーが完全に片方に寄るという基準値
-    final int POWER_ADVANTAGE_TO_WIN = 20; 
+    private final static int POWER_ADVANTAGE_TO_WIN = 20; 
     
 	
 	private double currentBarPercent;
