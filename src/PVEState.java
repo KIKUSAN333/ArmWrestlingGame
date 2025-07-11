@@ -1,12 +1,7 @@
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.geom.AffineTransform;
-import java.awt.image.ImageObserver;
-import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Composite;
 
 public class PVEState implements State{
 	private Player player;

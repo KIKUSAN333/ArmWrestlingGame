@@ -23,40 +23,92 @@ public class EnterNameState implements State{
 
     @Override
     public State processKeyTyped(String typed) {
-        // エンターキーで次のプレイヤーまたは完了
-        if(typed.equals("ENTER")) {
-            if(currentPlayer == 0 && !player1Name.isEmpty()) {
-                currentPlayer = 1; // プレイヤー2の入力に移る
-            } else if(currentPlayer == 1 && !player2Name.isEmpty()) {
-                // 両方の名前が入力されたら次のステートに移行
-                return new ReadyState(0,player1Name,player2Name); // または適切な次のステート
-            }
+        // エンターキーの処理
+        if (typed.equals("ENTER")) {
+            return handleEnterKey();
         }
         
-        // バックスペースで文字削除
-        else if(typed.equals("BS")) {
-            if(currentPlayer == 0 && player1Name.length() > 0) {
-                player1Name = player1Name.substring(0, player1Name.length() - 1);
-            } else if(currentPlayer == 1 && player2Name.length() > 0) {
-                player2Name = player2Name.substring(0, player2Name.length() - 1);
-            }
+        // バックスペースの処理
+        if (typed.equals("BS")) {
+            handleBackspace();
+            return this;
         }
         
-        // 通常の文字入力
-        else if(typed.length() == 1) {
-            char c = typed.charAt(0);
-            // 英数字と一部の記号のみ許可
-            if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || 
-               (c >= '0' && c <= '9') || c == '_' || c == '-') {
-                if(currentPlayer == 0 && player1Name.length() < MAX_NAME_LENGTH) {
-                    player1Name += c;
-                } else if(currentPlayer == 1 && player2Name.length() < MAX_NAME_LENGTH) {
-                    player2Name += c;
-                }
-            }
+        // 通常の文字入力の処理
+        if (isValidCharacter(typed)) {
+            addCharacterToCurrentPlayer(typed);
         }
         
         return this;
+    }
+
+    /**
+     * エンターキー押下時の処理
+     */
+    private State handleEnterKey() {
+        if (currentPlayer == 0 && !player1Name.isEmpty()) {
+            // プレイヤー1の入力完了、プレイヤー2の入力へ
+            currentPlayer = 1;
+            return this;
+        }
+        
+        if (currentPlayer == 1 && !player2Name.isEmpty()) {
+            // 両プレイヤーの入力完了、次のステートへ
+            return new ReadyState(0, player1Name, player2Name);
+        }
+        
+        return this;
+    }
+
+    /**
+     * バックスペース処理
+     */
+    private void handleBackspace() {
+        if (currentPlayer == 0 && player1Name.length() > 0) {
+            player1Name = player1Name.substring(0, player1Name.length() - 1);
+        } else if (currentPlayer == 1 && player2Name.length() > 0) {
+            player2Name = player2Name.substring(0, player2Name.length() - 1);
+        }
+    }
+
+    /**
+     * 入力文字が有効かどうかを判定
+     * 英数字、アンダースコア、ハイフン、日本語文字を許可
+     */
+    private boolean isValidCharacter(String typed) {
+        if (typed.length() != 1) {
+            return false;
+        }
+        
+        char c = typed.charAt(0);
+        
+        // 英数字をチェック
+        if (isAlphanumericOrSymbol(c)) {
+            return true;
+        }
+        
+        
+        return false;
+    }
+
+    /**
+     * 英数字と許可された記号かどうかを判定
+     */
+    private boolean isAlphanumericOrSymbol(char c) {
+        return (c >= 'a' && c <= 'z') || 
+               (c >= 'A' && c <= 'Z') || 
+               (c >= '0' && c <= '9');
+    }
+
+    /**
+     * 現在のプレイヤーに文字を追加
+     */
+    private void addCharacterToCurrentPlayer(String typed) {
+        if (currentPlayer == 0 && player1Name.length() < MAX_NAME_LENGTH) {
+            player1Name += typed;
+        } else if (currentPlayer == 1 && player2Name.length() < MAX_NAME_LENGTH) {
+            player2Name += typed;
+        }
     }
 
     @Override
@@ -95,7 +147,6 @@ public class EnterNameState implements State{
         g.setFont(smallFont);
         g.drawString("ENTERキーで次へ", 100, 350);
         g.drawString("BACKSPACEキーで削除", 100, 370);
-        g.drawString("英数字、_、-が入力可能", 100, 390);
         g.drawString("最大" + MAX_NAME_LENGTH + "文字", 100, 410);
     }
     
