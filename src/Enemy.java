@@ -6,11 +6,15 @@ public class Enemy extends Character{
 	private int baseActionPoint;
 	private int doActionPoint;
 	
+	private Random random;
+	
 	public Enemy(Model model,String name, int power, int level) {
 		super(model,name, power);
 		this.level = level;
 		
 		doActionPoint = 0;
+		random = new Random();
+		
 		decideNextActionFrame();
 		
 	}
@@ -32,7 +36,6 @@ public class Enemy extends Character{
 	}
 	
 	private void decideNextActionFrame() {
-		Random random = new Random();
 		
 		if(level == 1) {
 			baseActionPoint = random.nextInt(20,40);

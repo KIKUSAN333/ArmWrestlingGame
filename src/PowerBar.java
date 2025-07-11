@@ -22,18 +22,21 @@ public class PowerBar {
 	private int maxHideCount = 400;
 	private int hideDuration = 200;
 	
+	private Random random;
+	
 	public PowerBar(Model m) {
 		super();
 		this.model = m;
 
 		currentBarPercent = 0;
 		hideCount = 0;
+		
+		random = new Random();
 	
 		decideHideParameters();
 	}
 	
 	private void decideHideParameters() {
-		Random random = new Random();
 		maxHideCount = random.nextInt(300,1000);
 		hideDuration = random.nextInt(100,300);
 	}
