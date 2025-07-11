@@ -36,4 +36,8 @@ abstract class Character {
 		return isPowerUp;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 }

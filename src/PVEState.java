@@ -19,7 +19,7 @@ public class PVEState implements State{
 	public PVEState(Model m) {
 		model = m;
 		player = new Player(m,"test",1,"ENTER");
-		enemy = new Enemy(m,"test",1,3);
+		enemy = new Enemy(m,"test",1,1);
 		powerBar = new PowerBar(m);
 		time = new Time();
 		
@@ -28,6 +28,44 @@ public class PVEState implements State{
         // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
         image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
 		
+	}
+	
+
+	private State updateState(String typed) {
+
+	    
+	    // ゲーム終了条件をチェック
+	    String winner = getWinner();
+	    
+	    if (winner != null) {
+	        return new ResultState(winner);
+	    }
+	    
+	    // ボス戦への移行
+	    if (typed.equals("T")) {
+	        return new BossState(this);
+	    }
+	    
+	    return this;
+	}
+	
+	private String getWinner() {
+	    double powerPercent = powerBar.getCurrentBarPercent();
+		
+	    // パワーバーが満タンまたは空の場合
+	    if (powerPercent >= 1.0) {
+	        return player.getName();
+	    }
+	    if (powerPercent <= 0.0) {
+	        return enemy.getName();
+	    }
+	    
+	    // 時間切れの場合パワーが大きい方が返る
+	    if (time.getTime() <= 0) {
+	        return powerPercent >= 0.5 ? player.getName() : enemy.getName();
+	    }
+	    
+	    return null; // ゲーム続行
 	}
 
 	@Override
@@ -45,13 +83,12 @@ public class PVEState implements State{
 		enemy.doAction();
 		powerBar.updateBar(player.getPower(), enemy.getPower());
 		
+		//CPUがピンチになったら
 		if(powerBar.getCurrentBarPercent() >= 0.7 && !enemy.getIsPowerUp()) {
 			enemy.basePowerUp();
 		}
 		
-		
-		
-		return this;
+		return updateState("");
 	}
 
 	@Override
@@ -64,7 +101,8 @@ public class PVEState implements State{
 		
 		powerBar.updateBar(player.getPower(), enemy.getPower());
 		
-		return this;
+		State currentState = updateState(typed);
+		return currentState;
 	}
 
 	@Override
