@@ -6,8 +6,8 @@ public class PVEState extends GameBaseState {
     
     public PVEState(int level) {
         super();
-        player = new Player("test", 1, "ENTER");
-        enemy = new Enemy("enemy", 1, level);
+        player = new Player("PLAYER", 1, "ENTER");
+        enemy = new Enemy("ENEMY", 1, level);
     }
     
     @Override
