@@ -39,6 +39,10 @@ public class EnterNameState implements State{
             addCharacterToCurrentPlayer(typed);
         }
         
+        if(typed.equals(" ")) {
+        	return new TitleState();
+        }
+        
         return this;
     }
 

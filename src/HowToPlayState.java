@@ -12,7 +12,7 @@ public class HowToPlayState implements State{
 	@Override
 	public State processKeyTyped(String typed) {
 		
-		if(typed.equals("ENTER")) {
+		if(typed.equals(" ")) {
 			return new TitleState();
 		}
 		

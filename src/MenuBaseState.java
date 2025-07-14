@@ -27,7 +27,7 @@ public abstract class MenuBaseState implements State {
             selectID = (selectID + 1) % maxOptions;
         }
         
-        if(typed.equals("BS")) {
+        if(typed.equals(" ")) {
             return onBackPressed();
         }
         
