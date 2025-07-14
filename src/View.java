@@ -38,21 +38,9 @@ public class View extends JPanel {
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
         g.setColor(Color.WHITE);
         
-        // 描画する
-        /*
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
-        g.setColor(Color.WHITE);
-
-        g.drawString("Time: " + model.getTime(), 100, 150);
-        g.drawString("Key Typed: " + model.getTypedChar(), 100, 200);
-        g.drawString("KeyRollover: " + model.getEnableKeyRollover(), 100, 250);
-        g.drawString("Mouse Pressed: " + model.getMX() + "," + model.getMY(), 100, 300);
-		*/
         
         // 画像の表示例
         g.drawImage(image, model.getMX(), model.getMY(), this);
-        
-        
         
         
         //モデルから状態を取得し,状態に応じて描画

@@ -3,10 +3,6 @@ import java.awt.Graphics;
 
 public class HowToPlayState implements State{
 
-	public HowToPlayState() {
-
-	}
-
 	@Override
 	public State processTimeElapsed(int msec) {
 		

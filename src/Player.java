@@ -7,11 +7,6 @@ public class Player extends Character{
 		super(name, power);
 		key = kkey;
 	}
-
-	@Override
-	public void doAction() {
-		super.doAction();
-	}
 	
 	public String getKey() {
 		return key;

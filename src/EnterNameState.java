@@ -8,6 +8,7 @@ public class EnterNameState implements State{
     private String player2Name;
     private int currentPlayer; // 0: player1, 1: player2
     private static final int MAX_NAME_LENGTH = 10; // 名前の最大長
+    private static final String NORMAL_FONT = "Arial";
 
     public EnterNameState() {
         player1Name = "";
@@ -118,12 +119,12 @@ public class EnterNameState implements State{
         
         // タイトル表示
         g.setColor(Color.WHITE);
-        Font titleFont = new Font("Arial", Font.BOLD, 24);
+        Font titleFont = new Font(NORMAL_FONT, Font.BOLD, 24);
         g.setFont(titleFont);
         g.drawString("名前を入力してください", 200, 100);
         
         // 通常のフォント設定
-        Font normalFont = new Font("Arial", Font.PLAIN, 18);
+        Font normalFont = new Font(NORMAL_FONT, Font.PLAIN, 18);
         g.setFont(normalFont);
         
         // プレイヤー1の名前入力
@@ -142,7 +143,7 @@ public class EnterNameState implements State{
         
         // 操作説明
         g.setColor(Color.GRAY);
-        Font smallFont = new Font("Arial", Font.PLAIN, 14);
+        Font smallFont = new Font(NORMAL_FONT, Font.PLAIN, 14);
         g.setFont(smallFont);
         g.drawString("ENTERキーで次へ", 100, 350);
         g.drawString("BACKSPACEキーで削除", 100, 370);
