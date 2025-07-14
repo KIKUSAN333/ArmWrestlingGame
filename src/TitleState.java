@@ -1,88 +1,34 @@
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-
-public class TitleState implements State{
-	
-	private int selectID;
-	private static final int MAX_OPTIONS = 4; // 選択肢の数
-	private String[] menuOptions = {"PVE", "PVP", "RANKING" , "HOW TO PLAY"}; // 選択肢のテキスト
-
-	public TitleState() {
-		selectID = 0;
-	}
-
-	@Override
-	public State processTimeElapsed(int msec) {
-		return this;
-	}
-
-	@Override
-	public State processKeyTyped(String typed) {
-	       if(typed.equals("UP")) {
-	            selectID = (selectID - 1 + MAX_OPTIONS) % MAX_OPTIONS;
-	        }
-
-	        if(typed.equals("DOWN")) {
-	            selectID = (selectID + 1) % MAX_OPTIONS;
-	        }
-		
-		if(typed.equals("ENTER")) {
-			
-			return updateState();
-			
-		}
-		
-		return this;
-	}
-	
-	private State updateState() {
-		
-		if(selectID == 0) {
-			return new LevelSelectState();
-		}
-		else if(selectID == 1) {
-			return new EnterNameState();
-		}
-		else if(selectID == 2) {
-			
-		}
-		else if(selectID == 3) {
-			return new HowToPlayState();
-		}
-		
-		return this;
-	}
-
-	@Override
-	public void paintComponent(Graphics g, View view) {
-		
-        
-        // タイトルを描画
-        g.setColor(Color.WHITE);
-        Font titleFont = new Font("Arial", Font.BOLD, 40);
-        g.setFont(titleFont);
-        g.drawString("ARM WRESTLING", 100, 100);
-        
-        // メニュー選択肢を描画
-        Font menuFont = new Font(Font.SANS_SERIF, Font.BOLD, 32);
-        g.setFont(menuFont);
-        
-        for(int i = 0; i < MAX_OPTIONS; i++) {
-            // 選択中の項目は色を変える
-            if(i == selectID) {
-                g.setColor(Color.YELLOW); // 選択中は黄色
-                g.drawString("▶ " + menuOptions[i], 150, 200 + i * 50);
-            } else {
-                g.setColor(Color.WHITE); // 非選択は白色
-                g.drawString("  " + menuOptions[i], 150, 200 + i * 50);
-            }
+public class TitleState extends MenuBaseState {
+    
+    public TitleState() {
+        super(new String[]{"PVE", "PVP", "RANKING", "HOW TO PLAY"});
+    }
+    
+    @Override
+    protected String getTitle() {
+        return "ARM WRESTLING";
+    }
+    
+    @Override
+    protected State onEnterPressed() {
+        switch(selectID) {
+            case 0:
+                return new LevelSelectState();
+            case 1:
+                return new EnterNameState();
+            case 2:
+                // RANKINGの処理を追加
+                return this;
+            case 3:
+                return new HowToPlayState();
+            default:
+                return this;
         }
-        
-        // デバッグ用：選択ID表示
-        g.setColor(Color.GRAY);
-        g.drawString("SelectID: " + selectID, 10, 20);
-		
-	}
-
+    }
+    
+    @Override
+    protected State onBackPressed() {
+        // タイトル画面では戻る処理なし
+        return this;
+    }
 }
