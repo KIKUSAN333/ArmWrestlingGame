@@ -57,6 +57,7 @@ public class ReadyState implements State{
 	
 	@Override
 	public State processKeyTyped(String typed) {
+		
 		return this;
 	}
 

@@ -39,7 +39,7 @@ public class ResultState implements State{
 	@Override
 	public State processKeyTyped(String typed) {
 		
-		if(isEnd && typed.equals("ENTER")) {
+		if(isEnd && typed.equals(" ")) {
 			return new TitleState();
 		}
 		
@@ -57,7 +57,7 @@ public class ResultState implements State{
 		
 		if(isEnd) {
 			g.setColor(Color.WHITE);
-			g.drawString("Exit by typed ENTER",200, 450);
+			g.drawString("Exit by typed SPACE",200, 450);
 		}
 		
 	}

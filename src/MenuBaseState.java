@@ -61,9 +61,6 @@ public abstract class MenuBaseState implements State {
             }
         }
         
-        // デバッグ用：選択ID表示
-        g.setColor(Color.GRAY);
-        g.drawString("SelectID: " + selectID, 10, 20);
     }
     
     // 各サブクラスで実装する抽象メソッド

@@ -33,6 +33,8 @@ public class Model {
             controller.setKeyRollover(enableKeyRollover);
         }
         
+
+        
         state = state.processKeyTyped(typed);
         view.repaint();        
     }
