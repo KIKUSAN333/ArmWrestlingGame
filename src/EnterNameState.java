@@ -93,12 +93,10 @@ public class EnterNameState implements State{
         char c = typed.charAt(0);
         
         // 英数字をチェック
-        if (isAlphanumericOrSymbol(c)) {
-            return true;
-        }
+        return (isAlphanumericOrSymbol(c));
         
         
-        return false;
+ 
     }
 
     /**

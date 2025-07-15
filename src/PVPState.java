@@ -1,4 +1,3 @@
-import java.awt.Graphics;
 
 public class PVPState extends GameBaseState {
     private Player player1;
