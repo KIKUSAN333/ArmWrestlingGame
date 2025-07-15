@@ -44,7 +44,7 @@ public class Enemy extends Character{
 			baseActionPoint = random.nextInt(10,20);
 		}
 		else if(level == 3) {
-			baseActionPoint = random.nextInt(5,15);
+			baseActionPoint = random.nextInt(5,10);
 		}
 		else {
 			baseActionPoint = 10;
