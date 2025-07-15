@@ -1,7 +1,17 @@
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class HowToPlayState implements State{
+	
+	private Image backgroundImage;
+	
+	
+
+	public HowToPlayState() {
+		backgroundImage =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("background.jpg"));
+	}
 
 	@Override
 	public State processTimeElapsed(int msec) {
@@ -21,6 +31,8 @@ public class HowToPlayState implements State{
 
 	@Override
 	public void paintComponent(Graphics g, View view) {
+		g.drawImage(backgroundImage,0,0,view);
+		
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
 		g.drawString("基本操作説明", 0, 30);
 		

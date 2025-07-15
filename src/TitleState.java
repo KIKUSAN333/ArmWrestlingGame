@@ -6,7 +6,7 @@ public class TitleState extends MenuBaseState {
     
     @Override
     protected String getTitle() {
-        return "ARM WRESTLING";
+        return "MENU";
     }
     
     @Override
