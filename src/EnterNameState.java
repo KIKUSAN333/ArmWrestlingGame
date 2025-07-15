@@ -1,4 +1,6 @@
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.Color;
 
@@ -9,11 +11,15 @@ public class EnterNameState implements State{
     private int currentPlayer; // 0: player1, 1: player2
     private static final int MAX_NAME_LENGTH = 10; // 名前の最大長
     private static final String NORMAL_FONT = "Arial";
+    
+    private Image backgroundImage;
 
     public EnterNameState() {
         player1Name = "";
         player2Name = "";
         currentPlayer = 0;
+        
+        backgroundImage =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("background.jpg"));
     }
 
     @Override
@@ -118,8 +124,7 @@ public class EnterNameState implements State{
     @Override
     public void paintComponent(Graphics g, View view) {
         // 背景色設定
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 800, 600);
+        g.drawImage(backgroundImage,0,0,view);
         
         // タイトル表示
         g.setColor(Color.WHITE);
