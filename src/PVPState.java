@@ -57,9 +57,4 @@ public class PVPState extends GameBaseState {
         }
     }
     
-    @Override
-    protected void drawPlayerInfo(Graphics g) {
-        g.drawString(player1.getName() + " : " + player1.getPower(), 0, 100);
-        g.drawString(player2.getName() + " : " + player2.getPower(), 200, 100);
-    }
 }

@@ -51,9 +51,4 @@ public class PVEState extends GameBaseState {
         }
     }
     
-    @Override
-    protected void drawPlayerInfo(Graphics g) {
-        g.drawString("Player :" + player.getPower(), 0, 100);
-        g.drawString("Enemy  :" + enemy.getPower(), 200, 100);
-    }
 }

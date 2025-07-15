@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -93,7 +92,7 @@ public abstract class GameBaseState implements State {
             return new ResultState(winner, powerBar, getCurrentArmImage());
         }
         
-        // ボス戦への移行
+        // ボスが来た画面の移行
         if (typed.equals("T")) {
             return new BossState(this);
         }
@@ -158,9 +157,6 @@ public abstract class GameBaseState implements State {
         // 背景画像
         view.drawScaledImage(g, backgroundImage, -150, 0, 0.35);
         
-        // プレイヤー情報表示
-        g.setColor(Color.WHITE);
-        drawPlayerInfo(g);
         
         // パワーバーの値に応じた腕画像を描画
         Image currentArmImage = getCurrentArmImage();
@@ -172,24 +168,6 @@ public abstract class GameBaseState implements State {
         powerBar.showBar(g);
         time.showTime(g);
         
-        // デバッグ情報（開発時のみ）
-        drawDebugInfo(g);
-    }
-    
-    /**
-     * デバッグ情報を描画（開発時のみ）
-     */
-    private void drawDebugInfo(Graphics g) {
-        // デバッグモードの場合のみ表示
-        boolean debugMode = false; // 必要に応じてtrueに変更
-        
-        if (debugMode) {
-            g.setColor(Color.YELLOW);
-            int angle = calculateArmAngle();
-            double powerPercent = powerBar.getCurrentBarPercent();
-            g.drawString("Power: " + String.format("%.2f", powerPercent), 10, 20);
-            g.drawString("Arm Angle: " + angle + "°", 10, 40);
-        }
     }
     
     // サブクラスで実装する抽象メソッド
@@ -199,5 +177,4 @@ public abstract class GameBaseState implements State {
     protected abstract void updatePowerBar();
     protected abstract void handlePowerUpConditions();
     protected abstract void handleKeyInput(String typed);
-    protected abstract void drawPlayerInfo(Graphics g);
 }
