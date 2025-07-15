@@ -14,14 +14,14 @@ public class ResultState implements State{
 	private boolean isEnd;
 	private PowerBar powerBar;
 
-	public ResultState(String winnerName,PowerBar powerBar) {
+	public ResultState(String winnerName,PowerBar powerBar,Image image) {
 		
 		isEnd = false;
 		this.winnerName = winnerName;
 		this.powerBar = powerBar;
 		
         // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
-       image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("arm_00.png"));
+       this.image = image;
        backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("pxfuel.jpg"));
 	}
 
@@ -49,7 +49,10 @@ public class ResultState implements State{
 	@Override
 	public void paintComponent(Graphics g, View view) {
 		view.drawScaledImage(g,backgroundImage,-150,0,0.35);
-		view.drawScaledImage(g,image,100,150,0.5);
+		
+        // アーム画像
+       g.drawImage(image, -70, 0, view);
+       
 		g.setColor(Color.WHITE);
 		
 		g.drawString(winnerName + " WIN!", 200, 150);

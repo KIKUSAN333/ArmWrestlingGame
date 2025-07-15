@@ -64,7 +64,9 @@ public class ReadyState implements State{
 	@Override
 	public void paintComponent(Graphics g, View view) {
 		view.drawScaledImage(g,backgroundImage,-150,0,0.35);
-		view.drawScaledImage(g,image,100,150,0.5);
+		
+        // アーム画像
+       g.drawImage(image, -70, 0, view);
 		g.setColor(Color.WHITE);
 		
 		Font font = new Font("Arial", Font.BOLD, 100);
