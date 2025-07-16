@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -33,8 +34,10 @@ public class HowToPlayState implements State{
 	public void paintComponent(Graphics g, View view) {
 		g.drawImage(backgroundImage,0,0,view);
 		
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
-		g.drawString("基本操作説明", 0, 30);
+        // タイトル
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 32));
+        g.drawString("=== HOW TO PLAY ===", 100, 50);
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
 		g.drawString("ENTER : 決定", 0, 100);

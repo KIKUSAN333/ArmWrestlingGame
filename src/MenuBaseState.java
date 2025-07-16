@@ -51,10 +51,10 @@ public abstract class MenuBaseState implements State {
     	view.drawScaledImage(g, logoImage, 0, 150, 0.4);
     	
         // タイトルを描画
+        // タイトル
         g.setColor(Color.WHITE);
-        Font titleFont = new Font("Arial", Font.BOLD, 40);
-        g.setFont(titleFont);
-        g.drawString(getTitle(), 100, 100);
+        g.setFont(new Font("Arial", Font.BOLD, 32));
+        g.drawString("=== "+ getTitle() + " ===", 100, 50);
         
         // メニュー選択肢を描画
         Font menuFont = new Font(Font.SANS_SERIF, Font.BOLD, 32);

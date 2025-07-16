@@ -125,10 +125,10 @@ public class EnterNameState implements State{
         g.drawImage(backgroundImage,0,0,view);
         
         // タイトル表示
+        // タイトル
         g.setColor(Color.WHITE);
-        Font titleFont = new Font(NORMAL_FONT, Font.BOLD, 24);
-        g.setFont(titleFont);
-        g.drawString("名前を入力してください", 200, 100);
+        g.setFont(new Font(NORMAL_FONT, Font.BOLD, 32));
+        g.drawString("=== ENTER NAME ===", 100, 50);
         
         // 通常のフォント設定
         Font normalFont = new Font(NORMAL_FONT, Font.PLAIN, 18);
