@@ -6,7 +6,7 @@ public class PVEState extends GameBaseState {
     public PVEState(int level) {
         super();
         player = new Player("PLAYER", 1, "ENTER");
-        enemy = new Enemy("ENEMY", 1, level);
+        enemy = new Enemy("ENEMY" + level, 1, level);
     }
     
     @Override
@@ -52,12 +52,12 @@ public class PVEState extends GameBaseState {
 
 	@Override
 	protected String getCharacter1Name() {
-		return null;
+		return player.getName();
 	}
 
 	@Override
 	protected String getCharacter2Name() {
-		return null;
+		return enemy.getName();
 	}
     
 }

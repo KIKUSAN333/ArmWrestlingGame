@@ -38,17 +38,18 @@ public class HowToPlayState implements State{
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 32));
         g.drawString("=== HOW TO PLAY ===", 100, 50);
+        
 		
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+       g.setFont(new Font("Arial", Font.PLAIN, 16));
 		g.drawString("ENTER : 決定", 0, 100);
 		g.drawString("上矢印キー : 上を選択", 0, 150);
 		g.drawString("下矢印キー : 下を選択", 0, 200);
 		g.drawString("SPACE : 戻る",0,250);
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
-		g.drawString("ゲーム操作説明", 0, 350);
+		g.drawString("ゲーム操作", 0, 350);
 		
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+        g.setFont(new Font("Arial", Font.PLAIN, 16));
 		g.drawString("ENTER : 左プレイヤーパワーゲージを貯める", 0, 400);
 		g.drawString("SPACE : 右プレイヤーパワーゲージを貯める", 0, 450);
 		

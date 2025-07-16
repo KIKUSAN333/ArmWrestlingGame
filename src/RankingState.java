@@ -93,17 +93,6 @@ public class RankingState implements State {
                 // 順位を表示
                 String rankText = String.format("%d. %s", i + 1, record);
                 
-                // 勝者の名前を強調表示（Winnerの後の名前を取得）
-                if (record.contains("Winner:")) {
-                    String winnerName = record.split("Winner: ")[1].split(" \\|")[0];
-                    if (record.startsWith(winnerName)) {
-                        g.setColor(Color.CYAN);
-                    } else {
-                        g.setColor(Color.YELLOW);
-                    }
-                } else {
-                    g.setColor(Color.WHITE);
-                }
                 
                 g.drawString(rankText, 50, yPos);
                 yPos += 30;
