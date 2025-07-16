@@ -87,9 +87,11 @@ public abstract class GameBaseState implements State {
     protected State updateState(String typed) {
         // ゲーム終了条件をチェック
         String winner = getWinner();
+        String player1 = getCharacter1Name();
+        String player2 = getCharacter2Name();
         
         if (winner != null) {
-            return new ResultState(winner, powerBar, getCurrentArmImage());
+            return new ResultState(winner, powerBar, getCurrentArmImage(),player1,player2);
         }
         
         // ボスが来た画面の移行
@@ -100,7 +102,9 @@ public abstract class GameBaseState implements State {
         return this;
     }
     
-    protected String getWinner() {
+
+
+	protected String getWinner() {
         double powerPercent = powerBar.getCurrentBarPercent();
         
         // パワーバーが満タンまたは空の場合
@@ -177,4 +181,6 @@ public abstract class GameBaseState implements State {
     protected abstract void updatePowerBar();
     protected abstract void handlePowerUpConditions();
     protected abstract void handleKeyInput(String typed);
+    protected abstract String getCharacter1Name();
+    protected abstract String getCharacter2Name();
 }

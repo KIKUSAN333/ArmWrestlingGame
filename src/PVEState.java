@@ -49,5 +49,15 @@ public class PVEState extends GameBaseState {
             player.doAction();
         }
     }
+
+	@Override
+	protected String getCharacter1Name() {
+		return null;
+	}
+
+	@Override
+	protected String getCharacter2Name() {
+		return null;
+	}
     
 }

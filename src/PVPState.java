@@ -55,5 +55,16 @@ public class PVPState extends GameBaseState {
             player2.doAction();
         }
     }
+
+	@Override
+	protected String getCharacter1Name() {
+		return player1.getName();
+	}
+
+	@Override
+	protected String getCharacter2Name() {
+		return player2.getName();
+	}
     
+
 }

@@ -17,8 +17,7 @@ public class TitleState extends MenuBaseState {
             case 1:
                 return new EnterNameState();
             case 2:
-                // RANKINGの処理を追加
-                return this;
+                return new RankingState();
             case 3:
                 return new HowToPlayState();
             default:
