@@ -3,8 +3,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.*;
 
 public class RankingStateTest {
     private RankingState rankingState;
