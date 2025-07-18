@@ -94,13 +94,14 @@ public class ResultState implements State {
             try {
                 URL textURL = getClass().getResource(RECORD_FILE);
                 if (textURL != null) {
-                    BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(textURL.openStream()));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        records.add(line);
+                    // try-with-resourcesを使用してBufferedReaderを自動的に閉じる
+                    try (BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(textURL.openStream()))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            records.add(line);
+                        }
                     }
-                    reader.close();
                 }
             } catch (Exception e) {
                 // ファイルが存在しない場合は新規作成
@@ -120,11 +121,12 @@ public class ResultState implements State {
                 URL textURL = getClass().getResource(RECORD_FILE);
                 String filePath = textURL != null ? textURL.getPath() : RECORD_FILE;
                 
-                PrintStream out = new PrintStream(new FileOutputStream(filePath));
-                for (String record : records) {
-                    out.println(record);
+                // try-with-resourcesを使用してPrintStreamを自動的に閉じる
+                try (PrintStream out = new PrintStream(new FileOutputStream(filePath))) {
+                    for (String record : records) {
+                        out.println(record);
+                    }
                 }
-                out.close();
                 
                 System.out.println("ゲーム記録を保存しました: " + recordLine);
                 

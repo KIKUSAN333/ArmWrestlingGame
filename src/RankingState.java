@@ -18,7 +18,7 @@ public class RankingState implements State {
         records = loadGameRecords();
         backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("background.jpg"));
     }
-
+    
     /**
      * ゲーム記録をテキストファイルから読み込み
      */
@@ -28,13 +28,14 @@ public class RankingState implements State {
         try {
             URL textURL = getClass().getResource(RECORD_FILE);
             if (textURL != null) {
-                BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(textURL.openStream()));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    recordList.add(line);
+                // try-with-resourcesを使用してリソースを自動的に閉じる
+                try (BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(textURL.openStream()))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        recordList.add(line);
+                    }
                 }
-                reader.close();
             }
         } catch (Exception e) {
             System.out.println("記録ファイルが見つかりません。");
@@ -42,13 +43,13 @@ public class RankingState implements State {
         
         return recordList;
     }
-
+    
     @Override
     public State processTimeElapsed(int msec) {
         // 特に処理なし
         return this;
     }
-
+    
     @Override
     public State processKeyTyped(String typed) {
         // スペースキーでメニューに戻る
@@ -65,11 +66,11 @@ public class RankingState implements State {
         
         return this;
     }
-
+    
     @Override
     public void paintComponent(Graphics g, View view) {
         // 背景色
-        g.drawImage(backgroundImage,0,0,view);
+        g.drawImage(backgroundImage, 0, 0, view);
         
         // タイトル
         g.setColor(Color.WHITE);
@@ -81,7 +82,7 @@ public class RankingState implements State {
             g.setFont(new Font("Arial", Font.PLAIN, 20));
             g.drawString("No records found.", 150, 150);
             g.drawString("Play some games to see rankings!", 150, 180);
-         } 
+        } 
         else {
             // 記録を表示
             g.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -94,11 +95,9 @@ public class RankingState implements State {
                 // 順位を表示
                 String rankText = String.format("%d. %s", i + 1, record);
                 
-                
                 g.drawString(rankText, 50, yPos);
                 yPos += 30;
             }
         }
-        
     }
 }
