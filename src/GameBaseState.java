@@ -84,7 +84,7 @@ public abstract class GameBaseState implements State {
         return armImage;
     }
     
-    protected State updateState(String typed) {
+    protected State updateState() {
         // ゲーム終了条件をチェック
         String winner = getWinner();
         String player1 = getCharacter1Name();
@@ -137,7 +137,7 @@ public abstract class GameBaseState implements State {
         // ピンチ時のパワーアップ処理
         handlePowerUpConditions();
         
-        return updateState("");
+        return updateState();
     }
     
     @Override
@@ -148,7 +148,7 @@ public abstract class GameBaseState implements State {
         // パワーバーの更新
         updatePowerBar();
         
-        return updateState(typed);
+        return updateState();
     }
     
     @Override
