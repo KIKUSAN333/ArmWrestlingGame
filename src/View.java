@@ -12,17 +12,9 @@ public class View extends JPanel {
 
     private Model model;
 
-    // Sample instance variables:
-    private Image image;
-    private WavSound sound;
-
     public View(Model model) {
         this.model = model;
 
-        // 画像を読み込む．画像ファイルは src においておくと bin に自動コピーされる
-        image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("robot.png"));
-        // サウンドを読み込む
-        sound = new WavSound(getClass().getResource("bomb.wav"));
       }
 
     /**
@@ -39,8 +31,6 @@ public class View extends JPanel {
         g.setColor(Color.WHITE);
         
         
-        // 画像の表示例
-        g.drawImage(image, model.getMX(), model.getMY(), this);
         
         
         //モデルから状態を取得し,状態に応じて描画
@@ -61,9 +51,6 @@ public class View extends JPanel {
         g.fillRect(0, 0, size.width, size.height);
     }
 
-    public void playBombSound() {
-        sound.play();
-    }
     
 	public void drawScaledImage(Graphics g, Image img, int x, int y, double scale) {
 	    if (img == null) return;

@@ -42,7 +42,6 @@ public class Model {
     public synchronized void processMousePressed(int x, int y) {
         mx = x;
         my = y;
-        view.playBombSound();
         view.repaint();
     }
 
