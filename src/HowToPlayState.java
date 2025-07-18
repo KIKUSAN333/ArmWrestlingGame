@@ -55,7 +55,7 @@ public class HowToPlayState implements State{
 		g.setFont(bigFont);
 		g.drawString("ゲーム操作", 0, 350);
 		
-        g.setFont(new Font("Arial", Font.PLAIN, 16));
+        g.setFont(normalFont);
 		g.drawString("ENTER : 左プレイヤーパワーゲージを貯める", 0, 400);
 		g.drawString("SPACE : 右プレイヤーパワーゲージを貯める", 0, 450);
 		
