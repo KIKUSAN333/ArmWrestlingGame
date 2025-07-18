@@ -16,7 +16,7 @@ public abstract class GameBaseState implements State {
     private static final int MAX_ARM_ANGLE = 80;
     private static final int ARM_ANGLE_STEP = 10;
     
-    public GameBaseState() {
+    protected GameBaseState() {
         powerBar = new PowerBar();
         time = new Time();
         elapsedCount = 0;

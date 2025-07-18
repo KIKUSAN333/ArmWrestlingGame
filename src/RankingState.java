@@ -13,10 +13,16 @@ public class RankingState implements State {
     private static final String RECORD_FILE = "game_records.txt";
     private Image backgroundImage;
     
+    private Font normalFont;
+    private Font titleFont;
+    
     public RankingState() {
         // 記録を読み込む
         records = loadGameRecords();
         backgroundImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("background.jpg"));
+        
+        normalFont = new Font("Arial", Font.PLAIN, 16);
+        titleFont = new Font("Arial", Font.BOLD, 32);
     }
     
     /**
@@ -74,26 +80,26 @@ public class RankingState implements State {
         
         // タイトル
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 32));
+        g.setFont(titleFont);
         g.drawString("=== GAME RANKING ===", 100, 50);
         
         // 記録がない場合
         if (records.isEmpty()) {
-            g.setFont(new Font("Arial", Font.PLAIN, 20));
+            g.setFont(normalFont);
             g.drawString("No records found.", 150, 150);
             g.drawString("Play some games to see rankings!", 150, 180);
         } 
         else {
             // 記録を表示
-            g.setFont(new Font("Arial", Font.PLAIN, 16));
+            g.setFont(normalFont);
             int yPos = 100;
             int maxDisplay = Math.min(8, records.size()); // 最大8件表示
             
             for (int i = displayOffset; i < displayOffset + maxDisplay && i < records.size(); i++) {
-                String record = records.get(i);
+                String gameRecord = records.get(i);
                 
                 // 順位を表示
-                String rankText = String.format("%d. %s", i + 1, record);
+                String rankText = String.format("%d. %s", i + 1, gameRecord);
                 
                 g.drawString(rankText, 50, yPos);
                 yPos += 30;

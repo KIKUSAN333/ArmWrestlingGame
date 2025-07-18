@@ -89,24 +89,7 @@ public class ResultState implements State {
                                              player1Name, player2Name, winner, currentDateTime);
             
             // 既存の記録を読み込む
-            List<String> records = new ArrayList<>();
-            
-            try {
-                URL textURL = getClass().getResource(RECORD_FILE);
-                if (textURL != null) {
-                    // try-with-resourcesを使用してBufferedReaderを自動的に閉じる
-                    try (BufferedReader reader = new BufferedReader(
-                            new InputStreamReader(textURL.openStream()))) {
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            records.add(line);
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                // ファイルが存在しない場合は新規作成
-                System.out.println("記録ファイルが見つかりません。新規作成します。");
-            }
+            List<String> records = loadExistingRecords();
             
             // 新しい記録を先頭に追加
             records.add(0, recordLine);
@@ -117,25 +100,54 @@ public class ResultState implements State {
             }
             
             // ファイルに書き込み
-            try {
-                URL textURL = getClass().getResource(RECORD_FILE);
-                String filePath = textURL != null ? textURL.getPath() : RECORD_FILE;
-                
-                // try-with-resourcesを使用してPrintStreamを自動的に閉じる
-                try (PrintStream out = new PrintStream(new FileOutputStream(filePath))) {
-                    for (String record : records) {
-                        out.println(record);
-                    }
-                }
-                
-                System.out.println("ゲーム記録を保存しました: " + recordLine);
-                
-            } catch (Exception e) {
-                System.err.println("ゲーム記録の保存に失敗しました: " + e.getMessage());
-            }
+            writeRecordsToFile(records);
+            
+            System.out.println("ゲーム記録を保存しました: " + recordLine);
             
         } catch (Exception e) {
             System.err.println("ゲーム記録の処理に失敗しました: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * 既存の記録をファイルから読み込む
+     */
+    private List<String> loadExistingRecords() {
+        List<String> records = new ArrayList<>();
+        
+        try {
+            URL textURL = getClass().getResource(RECORD_FILE);
+            if (textURL != null) {
+                try (BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(textURL.openStream()))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        records.add(line);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // ファイルが存在しない場合は新規作成
+            System.out.println("記録ファイルが見つかりません。新規作成します。");
+        }
+        
+        return records;
+    }
+    
+    /**
+     * 記録をファイルに書き込む
+     */
+    private void writeRecordsToFile(List<String> records) throws IOException {
+        URL textURL = getClass().getResource(RECORD_FILE);
+        String filePath = textURL != null ? textURL.getPath() : RECORD_FILE;
+        
+        try (PrintStream out = new PrintStream(new FileOutputStream(filePath))) {
+            for (String gameRecord : records) {
+                out.println(gameRecord);
+            }
+        } catch (Exception e) {
+            System.err.println("ゲーム記録の保存に失敗しました: " + e.getMessage());
+            throw new IOException("ファイル書き込みエラー", e);
         }
     }
 }

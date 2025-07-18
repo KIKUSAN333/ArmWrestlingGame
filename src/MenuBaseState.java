@@ -11,7 +11,7 @@ public abstract class MenuBaseState implements State {
     private Image backgroundImage;
     private Image logoImage;
     
-    public MenuBaseState(String[] menuOptions) {
+    protected MenuBaseState(String[] menuOptions) {
         this.menuOptions = menuOptions;
         this.maxOptions = menuOptions.length;
         this.selectID = 0;
