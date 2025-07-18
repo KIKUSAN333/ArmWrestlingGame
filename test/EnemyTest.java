@@ -56,8 +56,8 @@ public class EnemyTest {
             Enemy testEnemy = new Enemy("テスト", 50, 3);
             int initialPower = testEnemy.getPower();
             
-            // baseActionPointは5-9の範囲なので、最大9回doActionを実行
-            for (int j = 0; j < 9; j++) {
+            // baseActionPointは8-12の範囲なので、最大12回doActionを実行
+            for (int j = 0; j < 12; j++) {
                 testEnemy.doAction();
             }
             
@@ -74,8 +74,8 @@ public class EnemyTest {
             Enemy testEnemy = new Enemy("テスト", 50, 4);
             int initialPower = testEnemy.getPower();
             
-            // baseActionPointは1-9の範囲なので、最大9回doActionを実行
-            for (int j = 0; j < 10; j++) {
+            // baseActionPointは5-9の範囲なので、最大9回doActionを実行
+            for (int j = 0; j < 9; j++) {
                 testEnemy.doAction();
             }
             
