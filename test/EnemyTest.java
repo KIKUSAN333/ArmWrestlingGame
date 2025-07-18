@@ -14,7 +14,6 @@ public class EnemyTest {
     
     @Test
     void レベル1のエネミーがbaseActionPointの範囲内で行動するかテスト() {
-        Enemy enemy = new Enemy("レベル1エネミー", 50, 1);
         
         // 複数回テストして範囲を確認
         for (int i = 0; i < 10; i++) {
@@ -33,7 +32,6 @@ public class EnemyTest {
     
     @Test
     void レベル2のエネミーがbaseActionPointの範囲内で行動するかテスト() {
-        Enemy enemy = new Enemy("レベル2エネミー", 50, 2);
         
         // 複数回テストして範囲を確認
         for (int i = 0; i < 10; i++) {
@@ -52,7 +50,6 @@ public class EnemyTest {
     
     @Test
     void レベル3のエネミーがbaseActionPointの範囲内で行動するかテスト() {
-        Enemy enemy = new Enemy("レベル3エネミー", 50, 3);
         
         // 複数回テストして範囲を確認
         for (int i = 0; i < 10; i++) {
@@ -70,8 +67,26 @@ public class EnemyTest {
     }
     
     @Test
-    void レベル4以上のエネミーが固定のbaseActionPointで行動するかテスト() {
-        Enemy enemy = new Enemy("レベル4エネミー", 50, 4);
+    void レベル4のエネミーがbaseActionPointの範囲内で行動するかテスト() {
+        
+        // 複数回テストして範囲を確認
+        for (int i = 0; i < 10; i++) {
+            Enemy testEnemy = new Enemy("テスト", 50, 4);
+            int initialPower = testEnemy.getPower();
+            
+            // baseActionPointは1-9の範囲なので、最大9回doActionを実行
+            for (int j = 0; j < 10; j++) {
+                testEnemy.doAction();
+            }
+            
+            // 少なくとも1回はsuperクラスのdoActionが実行されているはず
+            assertTrue(testEnemy.getPower() >= initialPower + 1);
+        }
+    }
+    
+    @Test
+    void レベル5以上のエネミーが固定のbaseActionPointで行動するかテスト() {
+        Enemy enemy = new Enemy("レベル5エネミー", 50, 5);
         
         int initialPower = enemy.getPower();
         
@@ -86,7 +101,7 @@ public class EnemyTest {
     
     @Test
     void doActionPointがbaseActionPointに達するまではパワーが増加しないかテスト() {
-        Enemy enemy = new Enemy("テストエネミー", 50, 4); // レベル4で固定baseActionPoint=10
+        Enemy enemy = new Enemy("テストエネミー", 50, 5); // レベル5で固定baseActionPoint=10
         
         int initialPower = enemy.getPower();
         
@@ -105,7 +120,7 @@ public class EnemyTest {
     
     @Test
     void doActionPointがbaseActionPointに達した後リセットされるかテスト() {
-        Enemy enemy = new Enemy("テストエネミー", 50, 4); // レベル4で固定baseActionPoint=10
+        Enemy enemy = new Enemy("テストエネミー", 50, 5); // レベル5で固定baseActionPoint=10
         
         int initialPower = enemy.getPower();
         
@@ -128,7 +143,7 @@ public class EnemyTest {
     
     @Test
     void basePowerUpメソッド実行後のdoActionで増加パワーが変わるかテスト() {
-        Enemy enemy = new Enemy("テストエネミー", 50, 4); // レベル4で固定baseActionPoint=10
+        Enemy enemy = new Enemy("テストエネミー", 50, 5); // レベル5で固定baseActionPoint=10
         
         // basePowerUpを実行
         enemy.basePowerUp();
@@ -150,15 +165,18 @@ public class EnemyTest {
         Enemy level1 = new Enemy("レベル1", 0, 1);
         Enemy level2 = new Enemy("レベル2", 0, 2);
         Enemy level3 = new Enemy("レベル3", 0, 3);
+        Enemy level4 = new Enemy("レベル4", 0, 4);
         
         // 100回doActionを実行
         for (int i = 0; i < 100; i++) {
             level1.doAction();
             level2.doAction();
             level3.doAction();
+            level4.doAction();
         }
         
         // レベルが高いほど行動頻度が高い（パワーの増加が多い）ことを確認
+        assertTrue(level4.getPower() > level3.getPower());
         assertTrue(level3.getPower() > level2.getPower());
         assertTrue(level2.getPower() > level1.getPower());
     }
