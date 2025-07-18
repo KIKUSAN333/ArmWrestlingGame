@@ -81,7 +81,8 @@ public class RankingState implements State {
             g.setFont(new Font("Arial", Font.PLAIN, 20));
             g.drawString("No records found.", 150, 150);
             g.drawString("Play some games to see rankings!", 150, 180);
-        } else {
+         } 
+        else {
             // 記録を表示
             g.setFont(new Font("Arial", Font.PLAIN, 16));
             int yPos = 100;
@@ -96,17 +97,6 @@ public class RankingState implements State {
                 
                 g.drawString(rankText, 50, yPos);
                 yPos += 30;
-            }
-            
-            // スクロール情報
-            if (records.size() > 8) {
-                g.setColor(Color.GRAY);
-                g.setFont(new Font("Arial", Font.PLAIN, 12));
-                g.drawString("Use UP/DOWN arrows to scroll", 50, view.getHeight() - 50);
-                g.drawString(String.format("Showing %d-%d of %d records", 
-                           displayOffset + 1, 
-                           Math.min(displayOffset + 8, records.size()), 
-                           records.size()), 50, view.getHeight() - 30);
             }
         }
         
