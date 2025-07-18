@@ -10,6 +10,7 @@ public class Model {
     private boolean enableKeyRollover = false;
     
     private State state;
+    private State preState;
 
 
     public Model() {
@@ -33,9 +34,20 @@ public class Model {
             controller.setKeyRollover(enableKeyRollover);
         }
         
-
-        
-        state = state.processKeyTyped(typed);
+        if(typed.equals("T")) {
+            if(state instanceof BossState) {
+                // BossStateからの復帰
+                state = preState;
+            } else {
+                // 通常の状態からBossStateへの移行
+                preState = state;
+                state = new BossState(state);
+            }
+        } else {
+            // T以外のキーの場合は通常の処理
+            state = state.processKeyTyped(typed);
+        }
+      
         view.repaint();        
     }
 

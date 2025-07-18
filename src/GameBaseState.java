@@ -94,11 +94,6 @@ public abstract class GameBaseState implements State {
             return new ResultState(winner, powerBar, getCurrentArmImage(),player1,player2);
         }
         
-        // ボスが来た画面の移行
-        if (typed.equals("T")) {
-            return new BossState(this);
-        }
-        
         return this;
     }
     

@@ -19,10 +19,6 @@ public class BossState implements State{
 
 	@Override
 	public State processKeyTyped(String typed) {
-		if(typed.equals("T")) {
-			return state;
-		}
-		
 		return this;
 	}
 
